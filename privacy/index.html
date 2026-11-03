@@ -1,43 +1,220 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Politique de confidentialité — Plead It</title>
+<meta name="description" content="Politique de confidentialité de l&#x27;application Plead It.">
+<meta name="theme-color" content="#1A1A2E">
+<meta property="og:title" content="Politique de confidentialité — Plead It">
+<meta property="og:description" content="Politique de confidentialité de l&#x27;application Plead It.">
+<meta property="og:image" content="https://pleadit.github.io/icon.png">
+<meta name="apple-itunes-app" content="app-id=6761395019">
 <link rel="icon" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-:root { --bg:#1A1A2E; --surface:#16213E; --red:#E94560; --gold:#FFD733; --muted:#AAAAAA; --text:#FFFFFF; }
-* { box-sizing:border-box; }
-body { margin:0; background:var(--bg); color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.6; }
-main { max-width:720px; margin:0 auto; padding:32px 16px 64px; }
-header { display:flex; align-items:center; gap:12px; margin-bottom:32px; }
-header img { width:44px; height:44px; border-radius:10px; }
-header a { color:var(--text); text-decoration:none; font-weight:800; letter-spacing:1px; font-size:20px; }
-h1 { font-size:32px; margin:0 0 8px; }
-h2 { font-size:18px; color:var(--gold); margin:28px 0 8px; }
-p, li { color:#E6E6EE; }
-.muted { color:var(--muted); font-size:14px; }
-.tagline { color:var(--red); font-weight:700; font-size:20px; margin:0 0 24px; }
-.card { background:var(--surface); border-radius:18px; padding:20px; margin:16px 0; }
-.btn { display:inline-block; background:var(--gold); color:var(--bg); font-weight:800;
-  padding:14px 22px; border-radius:14px; text-decoration:none; }
-a { color:var(--gold); }
-nav { display:flex; flex-wrap:wrap; gap:16px; margin-top:48px; font-size:14px; }
-.hero { text-align:center; padding-top:24px; }
-.hero img { width:120px; height:120px; border-radius:28px; }
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#1A1A2E;--surface:#16213E;--surface-alt:#242438;
+  --red:#E94560;--yellow:#FFD733;--green:#4CD987;
+  --orange:#FF9633;--purple:#9168ED;--blue:#38A9F7;--pink:#FF63B3;
+  --white:#FFFFFF;--grey:#AAAAAA;--dark:#1A1A2E;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+a{color:inherit;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(26,26,46,.86);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05);}
+.nav-logo{display:flex;align-items:center;gap:.6rem;font-size:1.2rem;font-weight:800;color:var(--white);text-decoration:none;letter-spacing:.06em;}
+.nav-logo img{width:30px;height:30px;border-radius:8px;}
+.nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center;}
+.nav-links a{color:var(--grey);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--white);}
+.nav-cta{background:var(--red);color:var(--white)!important;padding:.45rem 1.1rem;border-radius:999px;font-weight:700;font-size:.78rem!important;}
+@media(max-width:860px){.nav-links li:not(.keep){display:none;} nav{padding:.9rem 1rem;}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 1.25rem 4rem;position:relative;}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 45% at 50% 30%,rgba(233,69,96,.18),transparent 70%),radial-gradient(40% 30% at 80% 70%,rgba(145,104,237,.12),transparent 70%);pointer-events:none;}
+.hero > *{position:relative;}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--grey);font-size:.72rem;font-weight:600;padding:.35rem .95rem;border-radius:999px;margin-bottom:2rem;letter-spacing:.1em;text-transform:uppercase;}
+.hero-badge b{color:var(--green);}
+.roulette-icon{width:90px;height:90px;margin:0 auto 1.5rem;display:block;animation:spin 14s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.hero h1{font-size:clamp(4rem,14vw,10rem);font-weight:800;line-height:.88;letter-spacing:-.03em;}
+.hero h1 span{color:var(--red);}
+.hero-bar{width:56px;height:5px;background:var(--red);border-radius:3px;margin:1.25rem auto;}
+.hero-tagline{font-size:clamp(1rem,2.5vw,1.25rem);color:var(--grey);font-style:italic;margin-bottom:1.75rem;}
+.hero-desc{font-size:.98rem;color:rgba(255,255,255,.6);max-width:480px;margin:0 auto 2.5rem;line-height:1.75;}
+.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;}
+.hero-meta{margin-top:2rem;display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;font-family:'Space Mono',monospace;font-size:.72rem;color:rgba(255,255,255,.35);}
+.btn-red{background:var(--red);color:#fff;padding:.8rem 1.6rem;border-radius:999px;font-weight:700;font-size:.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;transition:transform .2s,opacity .2s;box-shadow:0 10px 30px rgba(233,69,96,.25);}
+.btn-red:hover{transform:translateY(-2px);opacity:.92;}
+.btn-outline{background:transparent;color:var(--white);padding:.8rem 1.6rem;border-radius:999px;font-weight:600;font-size:.9rem;text-decoration:none;border:1px solid rgba(255,255,255,.15);display:inline-flex;align-items:center;gap:.4rem;transition:transform .2s,border-color .2s;}
+.btn-outline:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.3);}
+
+/* SCROLLING CARDS */
+.cards-band{padding:4.5rem 0;overflow:hidden;background:var(--surface);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);}
+.cards-eyebrow{text-align:center;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:2rem;}
+.track{display:flex;gap:1rem;animation:slide 40s linear infinite;width:max-content;padding:.5rem 0;}
+.track:hover{animation-play-state:paused;}
+.track-r{animation-direction:reverse;animation-duration:46s;margin-top:1rem;}
+@keyframes slide{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.ocard{width:240px;height:300px;border-radius:22px;padding:1.4rem;display:flex;flex-direction:column;justify-content:space-between;flex-shrink:0;transition:transform .3s;}
+.ocard:hover{transform:scale(1.04) rotate(0deg)!important;}
+.c-green{background:var(--green);color:var(--dark);}
+.c-red{background:var(--red);color:#fff;}
+.c-yellow{background:var(--yellow);color:var(--dark);}
+.c-purple{background:var(--purple);color:#fff;}
+.c-blue{background:var(--blue);color:var(--dark);}
+.c-pink{background:var(--pink);color:#fff;}
+.c-orange{background:var(--orange);color:var(--dark);}
+.ocard-label{font-size:.6rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;opacity:.55;}
+.ocard-text{font-size:1.05rem;font-weight:700;line-height:1.3;flex:1;display:flex;align-items:center;padding:.6rem 0;}
+.ocard-cat{display:inline-block;background:rgba(0,0,0,.12);font-size:.65rem;font-weight:700;padding:.2rem .65rem;border-radius:999px;align-self:flex-start;text-transform:uppercase;letter-spacing:.08em;}
+.c-red .ocard-cat,.c-purple .ocard-cat,.c-pink .ocard-cat{background:rgba(255,255,255,.18);}
+.tl{transform:rotate(-3deg);}.tr{transform:rotate(3deg);}.tl2{transform:rotate(-6deg);}.tr2{transform:rotate(6deg);}
+@media(prefers-reduced-motion:reduce){.track,.roulette-icon{animation:none;}}
+
+/* SECTIONS */
+.sec{padding:5.5rem 1.25rem;max-width:1080px;margin:0 auto;}
+.sec-bg{background:var(--surface);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);}
+.tag{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:.65rem;}
+.h2{font-size:clamp(2rem,5vw,2.8rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:.9rem;}
+.sub{font-size:.95rem;color:rgba(255,255,255,.55);max-width:520px;line-height:1.7;}
+.sep{height:1px;background:rgba(255,255,255,.05);}
+
+/* CONCEPT CARDS */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:2.5rem;}
+.cc{background:var(--surface-alt);border:1px solid rgba(255,255,255,.05);border-radius:18px;padding:1.5rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.cc:hover{border-color:rgba(255,255,255,.12);transform:translateY(-3px);}
+.cc-bar{position:absolute;top:0;left:0;right:0;height:3px;}
+.cc-n{font-family:'Space Mono',monospace;font-size:.7rem;color:rgba(255,255,255,.22);font-weight:700;margin-bottom:.6rem;}
+.cc h3{font-size:.98rem;font-weight:700;margin-bottom:.35rem;}
+.cc p{font-size:.84rem;color:var(--grey);line-height:1.6;}
+
+/* SCREENS */
+.screens{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:3rem;}
+.phone{width:220px;border-radius:34px;padding:8px;background:#0d0d1a;border:1px solid rgba(255,255,255,.08);box-shadow:0 30px 60px rgba(0,0,0,.45);transition:transform .3s;}
+.phone img{width:100%;display:block;border-radius:27px;}
+.phone:nth-child(1){transform:rotate(-4deg) translateY(12px);}
+.phone:nth-child(3){transform:rotate(4deg) translateY(12px);}
+.phone:hover{transform:rotate(0) translateY(-6px);}
+.phone-cap{text-align:center;font-size:.75rem;color:var(--grey);margin-top:.9rem;font-weight:600;}
+@media(max-width:760px){.phone{width:170px;}.phone:nth-child(3){display:none;}}
+
+/* STEPS */
+.steps{margin-top:2.5rem;display:flex;flex-direction:column;}
+.step{display:grid;grid-template-columns:56px 1fr;gap:1.25rem;padding:1.75rem 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.step:last-child{border:none;}
+.sn{font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--red);opacity:.3;line-height:1;padding-top:.15rem;}
+.stag{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .65rem;border-radius:999px;margin-bottom:.35rem;}
+.step h3{font-size:1rem;font-weight:700;margin-bottom:.3rem;}
+.step p{font-size:.86rem;color:var(--grey);line-height:1.65;max-width:580px;}
+.obj-box{background:rgba(255,150,51,.05);border:1px solid rgba(255,150,51,.18);border-left:4px solid var(--orange);border-radius:14px;padding:1.5rem;margin-top:2.5rem;}
+.obj-box h3{color:var(--orange);font-size:.95rem;font-weight:700;margin-bottom:.4rem;}
+.obj-box p{color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.65;}
+
+/* LEVELS */
+.lvl-row{display:flex;align-items:stretch;justify-content:center;gap:1.25rem;flex-wrap:wrap;margin-top:2.5rem;}
+.lvl{display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:1.9rem 2.25rem;border-radius:24px;font-weight:800;font-size:1.3rem;letter-spacing:.06em;min-width:190px;text-align:center;transition:transform .2s;}
+.lvl:hover{transform:translateY(-4px) rotate(-1deg);}
+.lvl small{font-size:.78rem;font-weight:500;opacity:.75;letter-spacing:0;}
+.lvl .cnt{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;opacity:.6;letter-spacing:.05em;}
+.lv-s{background:var(--red);color:#fff;}
+.lv-m{background:var(--yellow);color:var(--dark);}
+.lv-h{background:var(--purple);color:#fff;}
+
+/* PLANS */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem;}
+@media(max-width:680px){.pgrid{grid-template-columns:1fr;}}
+.plan{background:var(--surface-alt);border:1px solid rgba(255,255,255,.05);border-radius:18px;padding:1.75rem;position:relative;}
+.plan.featured{border-color:rgba(255,215,51,.35);background:linear-gradient(160deg,rgba(255,215,51,.07),rgba(233,69,96,.05));}
+.plan-name{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:.4rem;}
+.plan h3{font-size:1.25rem;font-weight:800;margin-bottom:.3rem;}
+.plan .price{font-family:'Space Mono',monospace;font-size:.8rem;color:var(--grey);margin-bottom:1.25rem;}
+.plan .price b{color:var(--white);font-size:1rem;}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.plan li{display:flex;align-items:flex-start;gap:.55rem;font-size:.86rem;color:rgba(255,255,255,.75);line-height:1.45;}
+.ck{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;flex-shrink:0;font-weight:700;margin-top:.05rem;}
+.ck-g{background:rgba(76,217,135,.12);color:var(--green);}
+.ck-y{background:rgba(255,215,51,.12);color:var(--yellow);}
+.soon{position:absolute;top:1.25rem;right:1.25rem;background:var(--yellow);color:var(--dark);font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .7rem;border-radius:999px;}
+.note{margin-top:1.25rem;font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.6;}
+
+/* TITLES */
+.tlist{margin-top:2.5rem;background:var(--surface-alt);border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.05);}
+.trow{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.6rem;border-bottom:1px solid rgba(255,255,255,.05);}
+.trow:last-child{border:none;}
+.tscore{font-family:'Space Mono',monospace;font-size:.9rem;font-weight:700;color:var(--yellow);min-width:65px;}
+.tname{font-size:.92rem;font-weight:700;flex:1;}
+.tstars{color:var(--yellow);font-size:.75rem;letter-spacing:.1em;}
+
+/* CTA */
+.cta-band{background:var(--red);padding:5rem 1.25rem;text-align:center;position:relative;overflow:hidden;}
+.cta-band h2{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;margin-bottom:.65rem;letter-spacing:-.02em;}
+.cta-band p{font-size:.95rem;opacity:.85;margin-bottom:1.75rem;}
+.btn-white{background:#fff;color:var(--red);padding:.85rem 2.25rem;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;transition:transform .2s;}
+.btn-white:hover{transform:translateY(-2px);}
+
+/* SUPPORT */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2.5rem;}
+.sc{background:var(--surface-alt);border:1px solid rgba(255,255,255,.05);border-radius:18px;padding:1.5rem;}
+.sc h3{font-size:.95rem;font-weight:700;margin-bottom:.45rem;}
+.sc p{font-size:.84rem;color:var(--grey);line-height:1.6;}
+.sc a{color:var(--blue);text-decoration:none;}
+.sc a:hover{text-decoration:underline;}
+.faq{margin-top:2.5rem;display:flex;flex-direction:column;gap:.75rem;}
+.faq details{background:var(--surface-alt);border:1px solid rgba(255,255,255,.05);border-radius:14px;padding:1.1rem 1.4rem;}
+.faq summary{cursor:pointer;font-weight:700;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;gap:1rem;}
+.faq summary::after{content:"+";color:var(--red);font-weight:800;}
+.faq details[open] summary::after{content:"–";}
+.faq details p{margin-top:.7rem;font-size:.85rem;color:var(--grey);line-height:1.65;}
+
+/* LEGAL */
+.legal{padding:8rem 1.25rem 4rem;max-width:760px;margin:0 auto;}
+.legal .updated{font-family:'Space Mono',monospace;font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:2rem;}
+.legal .summary{background:var(--surface-alt);border-left:4px solid var(--yellow);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:2rem;font-size:.86rem;color:rgba(255,255,255,.7);line-height:1.7;}
+.legal h2{font-size:1rem;font-weight:700;margin:2rem 0 .5rem;color:var(--white);}
+.legal p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:.6rem;}
+.legal a{color:var(--blue);}
+
+/* FOOTER */
+footer{padding:2.5rem 1.25rem;max-width:1080px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1.25rem;border-top:1px solid rgba(255,255,255,.05);text-align:center;}
+.fb{font-size:1.3rem;font-weight:800;letter-spacing:.06em;}
+.fb span{color:var(--red);}
+.fl{display:flex;flex-wrap:wrap;gap:1.25rem;justify-content:center;list-style:none;}
+.fl a{color:var(--grey);text-decoration:none;font-size:.8rem;transition:color .2s;}
+.fl a:hover{color:var(--white);}
+.sr{display:flex;gap:.65rem;}
+.sl{width:38px;height:38px;border-radius:50%;background:var(--surface-alt);border:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:var(--grey);text-decoration:none;font-size:.9rem;transition:background .2s,color .2s;}
+.sl:hover{background:var(--red);color:#fff;}
+.copy{font-size:.72rem;color:rgba(255,255,255,.28);}
 </style>
 </head>
 <body>
-<main>
-<header><img src="/icon.png" alt=""><a href="/">PLEAD IT</a></header>
+<nav>
+  <a href="/" class="nav-logo"><img src="/icon.png" alt="">PLEAD<span style="color:var(--red)">IT</span></a>
+  <ul class="nav-links">
+    <li><a href="/#concept">Le jeu</a></li>
+    <li><a href="/#howtoplay">Comment jouer</a></li>
+    <li><a href="/#niveaux">Niveaux</a></li>
+    <li><a href="/#formules">Formules</a></li>
+    <li><a href="/support/">Support</a></li>
+    <li class="keep"><a href="https://apps.apple.com/app/id6761395019" class="nav-cta">App Store ↓</a></li>
+  </ul>
+</nav>
 
-<h1>Politique de confidentialité</h1>
-<p class="muted">Cette page reprend la politique affichée dans l'application.
-English summary: Plead It stores player profiles on your device only. Ads are served by
-Google AdMob with your consent; subscriptions are handled by RevenueCat. We never sell your data.
-Contact: plead.it.app@gmail.com</p>
-<h2>1. Introduction</h2><p>Bienvenue dans Plead It. Cette Politique de Confidentialité explique comment nous collectons, utilisons et protégeons vos informations personnelles lorsque vous utilisez notre application mobile.</p><p>En utilisant Plead It, vous acceptez les pratiques décrites dans cette politique.</p>
+<section class="legal">
+  <div class="tag">Légal</div>
+  <h1 class="h2">Politique de confidentialité</h1>
+  <p class="updated">Dernière mise à jour : novembre 2026</p>
+  <div class="summary">En bref : les profils joueurs restent sur ton téléphone. Les publicités sont affichées par Google AdMob, avec ton accord pour la personnalisation. L'abonnement est géré par Apple et RevenueCat. Nous ne vendons jamais tes données. <em>English summary: player data stays on your device; ads by Google AdMob with your consent; subscriptions handled by Apple and RevenueCat; we never sell your data.</em> Contact : <a href="mailto:plead.it.app@gmail.com">plead.it.app@gmail.com</a></div>
+  <h2>1. Introduction</h2><p>Bienvenue dans Plead It. Cette Politique de Confidentialité explique comment nous collectons, utilisons et protégeons vos informations personnelles lorsque vous utilisez notre application mobile.</p><p>En utilisant Plead It, vous acceptez les pratiques décrites dans cette politique.</p>
 <h2>2. Données collectées</h2><p>Données que vous fournissez :<br>• Prénom et photo de profil des joueurs créés localement<br>• Questions personnalisées créées dans l&#x27;app</p><p>Données collectées automatiquement :<br>• Données d&#x27;utilisation anonymes<br>• Identifiant publicitaire (AdMob), uniquement avec votre accord<br>• Historique d&#x27;achats de l&#x27;abonnement, associé à un identifiant anonyme (RevenueCat)</p><p>Ce que nous ne collectons PAS :<br>• Numéros de téléphone<br>• Localisation géographique<br>• Contacts téléphoniques<br>• Données biométriques</p>
 <h2>3. Utilisation des données</h2><p>Vos données sont utilisées pour :<br>• Sauvegarder vos profils joueurs et statistiques<br>• Afficher des publicités via Google AdMob<br>• Gérer votre abonnement Premium via RevenueCat<br>• Améliorer l&#x27;expérience utilisateur</p>
 <h2>4. Partage des données</h2><p>Nous ne vendons jamais vos données personnelles. Nous partageons certaines données avec :<br>• Google (AdMob) : pour l&#x27;affichage de publicités<br>• RevenueCat : pour la gestion de l&#x27;abonnement Premium (aucun nom ni e-mail transmis)</p>
@@ -47,14 +224,24 @@ Contact: plead.it.app@gmail.com</p>
 <h2>8. Protection des mineurs</h2><p>Plead It est destiné aux utilisateurs de 17 ans et plus. Nous ne collectons pas intentionnellement de données personnelles de mineurs.</p>
 <h2>9. Modifications</h2><p>Nous nous réservons le droit de modifier cette politique. Toute modification sera notifiée dans l&#x27;application.</p>
 <h2>10. Contact</h2><p>Pour toute question relative à cette politique :<br>plead.it.app@gmail.com</p>
+</section>
 
-<nav>
-  <a href="/">Accueil</a>
-  <a href="/privacy/">Confidentialité</a>
-  <a href="/terms/">Conditions d'utilisation</a>
-  <a href="/support/">Support</a>
-</nav>
-<p class="muted">© 2026 Plead It</p>
-</main>
+<footer>
+  <div class="fb">PLEAD<span>IT</span></div>
+  <div class="sr">
+    <a href="https://www.instagram.com/plead.it/" target="_blank" rel="noopener" class="sl" title="Instagram" aria-label="Instagram">📸</a>
+    <a href="https://www.tiktok.com/@plead.it" target="_blank" rel="noopener" class="sl" title="TikTok" aria-label="TikTok">🎵</a>
+    <a href="mailto:plead.it.app@gmail.com" class="sl" title="Email" aria-label="Email">✉️</a>
+  </div>
+  <ul class="fl">
+    <li><a href="/#concept">Le jeu</a></li>
+    <li><a href="/#howtoplay">Comment jouer</a></li>
+    <li><a href="/#formules">Formules</a></li>
+    <li><a href="/support/">Support</a></li>
+    <li><a href="/privacy/">Confidentialité</a></li>
+    <li><a href="/terms/">Conditions d'utilisation</a></li>
+  </ul>
+  <p class="copy">© 2026 Plead It · Tous droits réservés · <em>Defend the indefensible.</em></p>
+</footer>
 </body>
 </html>

@@ -1,66 +1,372 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plead It — Défends l&#x27;indéfendable</title>
+<meta name="description" content="Plead It, le jeu de soirée où tu dois défendre des opinions controversées. Gratuit sur l&#x27;App Store.">
+<meta name="theme-color" content="#1A1A2E">
+<meta property="og:title" content="Plead It — Défends l&#x27;indéfendable">
+<meta property="og:description" content="Plead It, le jeu de soirée où tu dois défendre des opinions controversées. Gratuit sur l&#x27;App Store.">
+<meta property="og:image" content="https://pleadit.github.io/icon.png">
+<meta name="apple-itunes-app" content="app-id=6761395019">
 <link rel="icon" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-:root { --bg:#1A1A2E; --surface:#16213E; --red:#E94560; --gold:#FFD733; --muted:#AAAAAA; --text:#FFFFFF; }
-* { box-sizing:border-box; }
-body { margin:0; background:var(--bg); color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.6; }
-main { max-width:720px; margin:0 auto; padding:32px 16px 64px; }
-header { display:flex; align-items:center; gap:12px; margin-bottom:32px; }
-header img { width:44px; height:44px; border-radius:10px; }
-header a { color:var(--text); text-decoration:none; font-weight:800; letter-spacing:1px; font-size:20px; }
-h1 { font-size:32px; margin:0 0 8px; }
-h2 { font-size:18px; color:var(--gold); margin:28px 0 8px; }
-p, li { color:#E6E6EE; }
-.muted { color:var(--muted); font-size:14px; }
-.tagline { color:var(--red); font-weight:700; font-size:20px; margin:0 0 24px; }
-.card { background:var(--surface); border-radius:18px; padding:20px; margin:16px 0; }
-.btn { display:inline-block; background:var(--gold); color:var(--bg); font-weight:800;
-  padding:14px 22px; border-radius:14px; text-decoration:none; }
-a { color:var(--gold); }
-nav { display:flex; flex-wrap:wrap; gap:16px; margin-top:48px; font-size:14px; }
-.hero { text-align:center; padding-top:24px; }
-.hero img { width:120px; height:120px; border-radius:28px; }
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#1A1A2E;--surface:#16213E;--surface-alt:#242438;
+  --red:#E94560;--yellow:#FFD733;--green:#4CD987;
+  --orange:#FF9633;--purple:#9168ED;--blue:#38A9F7;--pink:#FF63B3;
+  --white:#FFFFFF;--grey:#AAAAAA;--dark:#1A1A2E;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+a{color:inherit;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(26,26,46,.86);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05);}
+.nav-logo{display:flex;align-items:center;gap:.6rem;font-size:1.2rem;font-weight:800;color:var(--white);text-decoration:none;letter-spacing:.06em;}
+.nav-logo img{width:30px;height:30px;border-radius:8px;}
+.nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center;}
+.nav-links a{color:var(--grey);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--white);}
+.nav-cta{background:var(--red);color:var(--white)!important;padding:.45rem 1.1rem;border-radius:999px;font-weight:700;font-size:.78rem!important;}
+@media(max-width:860px){.nav-links li:not(.keep){display:none;} nav{padding:.9rem 1rem;}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 1.25rem 4rem;position:relative;}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 45% at 50% 30%,rgba(233,69,96,.18),transparent 70%),radial-gradient(40% 30% at 80% 70%,rgba(145,104,237,.12),transparent 70%);pointer-events:none;}
+.hero > *{position:relative;}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--grey);font-size:.72rem;font-weight:600;padding:.35rem .95rem;border-radius:999px;margin-bottom:2rem;letter-spacing:.1em;text-transform:uppercase;}
+.hero-badge b{color:var(--green);}
+.roulette-icon{width:90px;height:90px;margin:0 auto 1.5rem;display:block;animation:spin 14s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.hero h1{font-size:clamp(4rem,14vw,10rem);font-weight:800;line-height:.88;letter-spacing:-.03em;}
+.hero h1 span{color:var(--red);}
+.hero-bar{width:56px;height:5px;background:var(--red);border-radius:3px;margin:1.25rem auto;}
+.hero-tagline{font-size:clamp(1rem,2.5vw,1.25rem);color:var(--grey);font-style:italic;margin-bottom:1.75rem;}
+.hero-desc{font-size:.98rem;color:rgba(255,255,255,.6);max-width:480px;margin:0 auto 2.5rem;line-height:1.75;}
+.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;}
+.hero-meta{margin-top:2rem;display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;font-family:'Space Mono',monospace;font-size:.72rem;color:rgba(255,255,255,.35);}
+.btn-red{background:var(--red);color:#fff;padding:.8rem 1.6rem;border-radius:999px;font-weight:700;font-size:.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;transition:transform .2s,opacity .2s;box-shadow:0 10px 30px rgba(233,69,96,.25);}
+.btn-red:hover{transform:translateY(-2px);opacity:.92;}
+.btn-outline{background:transparent;color:var(--white);padding:.8rem 1.6rem;border-radius:999px;font-weight:600;font-size:.9rem;text-decoration:none;border:1px solid rgba(255,255,255,.15);display:inline-flex;align-items:center;gap:.4rem;transition:transform .2s,border-color .2s;}
+.btn-outline:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.3);}
+
+/* SCROLLING CARDS */
+.cards-band{padding:4.5rem 0;overflow:hidden;background:var(--surface);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);}
+.cards-eyebrow{text-align:center;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:2rem;}
+.track{display:flex;gap:1rem;animation:slide 40s linear infinite;width:max-content;padding:.5rem 0;}
+.track:hover{animation-play-state:paused;}
+.track-r{animation-direction:reverse;animation-duration:46s;margin-top:1rem;}
+@keyframes slide{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.ocard{width:240px;height:300px;border-radius:22px;padding:1.4rem;display:flex;flex-direction:column;justify-content:space-between;flex-shrink:0;transition:transform .3s;}
+.ocard:hover{transform:scale(1.04) rotate(0deg)!important;}
+.c-green{background:var(--green);color:var(--dark);}
+.c-red{background:var(--red);color:#fff;}
+.c-yellow{background:var(--yellow);color:var(--dark);}
+.c-purple{background:var(--purple);color:#fff;}
+.c-blue{background:var(--blue);color:var(--dark);}
+.c-pink{background:var(--pink);color:#fff;}
+.c-orange{background:var(--orange);color:var(--dark);}
+.ocard-label{font-size:.6rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;opacity:.55;}
+.ocard-text{font-size:1.05rem;font-weight:700;line-height:1.3;flex:1;display:flex;align-items:center;padding:.6rem 0;}
+.ocard-cat{display:inline-block;background:rgba(0,0,0,.12);font-size:.65rem;font-weight:700;padding:.2rem .65rem;border-radius:999px;align-self:flex-start;text-transform:uppercase;letter-spacing:.08em;}
+.c-red .ocard-cat,.c-purple .ocard-cat,.c-pink .ocard-cat{background:rgba(255,255,255,.18);}
+.tl{transform:rotate(-3deg);}.tr{transform:rotate(3deg);}.tl2{transform:rotate(-6deg);}.tr2{transform:rotate(6deg);}
+@media(prefers-reduced-motion:reduce){.track,.roulette-icon{animation:none;}}
+
+/* SECTIONS */
+.sec{padding:5.5rem 1.25rem;max-width:1080px;margin:0 auto;}
+.sec-bg{background:var(--surface);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);}
+.tag{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:.65rem;}
+.h2{font-size:clamp(2rem,5vw,2.8rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:.9rem;}
+.sub{font-size:.95rem;color:rgba(255,255,255,.55);max-width:520px;line-height:1.7;}
+.sep{height:1px;background:rgba(255,255,255,.05);}
+
+/* CONCEPT CARDS */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:2.5rem;}
+.cc{background:var(--surface-alt);border:1px solid rgba(255,255,255,.05);border-radius:18px;padding:1.5rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.cc:hover{border-color:rgba(255,255,255,.12);transform:translateY(-3px);}
+.cc-bar{position:absolute;top:0;left:0;right:0;height:3px;}
+.cc-n{font-family:'Space Mono',monospace;font-size:.7rem;color:rgba(255,255,255,.22);font-weight:700;margin-bottom:.6rem;}
+.cc h3{font-size:.98rem;font-weight:700;margin-bottom:.35rem;}
+.cc p{font-size:.84rem;color:var(--grey);line-height:1.6;}
+
+/* SCREENS */
+.screens{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:3rem;}
+.phone{width:220px;border-radius:34px;padding:8px;background:#0d0d1a;border:1px solid rgba(255,255,255,.08);box-shadow:0 30px 60px rgba(0,0,0,.45);transition:transform .3s;}
+.phone img{width:100%;display:block;border-radius:27px;}
+.phone:nth-child(1){transform:rotate(-4deg) translateY(12px);}
+.phone:nth-child(3){transform:rotate(4deg) translateY(12px);}
+.phone:hover{transform:rotate(0) translateY(-6px);}
+.phone-cap{text-align:center;font-size:.75rem;color:var(--grey);margin-top:.9rem;font-weight:600;}
+@media(max-width:760px){.phone{width:170px;}.phone:nth-child(3){display:none;}}
+
+/* STEPS */
+.steps{margin-top:2.5rem;display:flex;flex-direction:column;}
+.step{display:grid;grid-template-columns:56px 1fr;gap:1.25rem;padding:1.75rem 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.step:last-child{border:none;}
+.sn{font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--red);opacity:.3;line-height:1;padding-top:.15rem;}
+.stag{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .65rem;border-radius:999px;margin-bottom:.35rem;}
+.step h3{font-size:1rem;font-weight:700;margin-bottom:.3rem;}
+.step p{font-size:.86rem;color:var(--grey);line-height:1.65;max-width:580px;}
+.obj-box{background:rgba(255,150,51,.05);border:1px solid rgba(255,150,51,.18);border-left:4px solid var(--orange);border-radius:14px;padding:1.5rem;margin-top:2.5rem;}
+.obj-box h3{color:var(--orange);font-size:.95rem;font-weight:700;margin-bottom:.4rem;}
+.obj-box p{color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.65;}
+
+/* LEVELS */
+.lvl-row{display:flex;align-items:stretch;justify-content:center;gap:1.25rem;flex-wrap:wrap;margin-top:2.5rem;}
+.lvl{display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:1.9rem 2.25rem;border-radius:24px;font-weight:800;font-size:1.3rem;letter-spacing:.06em;min-width:190px;text-align:center;transition:transform .2s;}
+.lvl:hover{transform:translateY(-4px) rotate(-1deg);}
+.lvl small{font-size:.78rem;font-weight:500;opacity:.75;letter-spacing:0;}
+.lvl .cnt{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;opacity:.6;letter-spacing:.05em;}
+.lv-s{background:var(--red);color:#fff;}
+.lv-m{background:var(--yellow);color:var(--dark);}
+.lv-h{background:var(--purple);color:#fff;}
+
+/* PLANS */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem;}
+@media(max-width:680px){.pgrid{grid-template-columns:1fr;}}
+.plan{background:var(--surface-alt);border:1px solid rgba(255,255,255,.05);border-radius:18px;padding:1.75rem;position:relative;}
+.plan.featured{border-color:rgba(255,215,51,.35);background:linear-gradient(160deg,rgba(255,215,51,.07),rgba(233,69,96,.05));}
+.plan-name{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:.4rem;}
+.plan h3{font-size:1.25rem;font-weight:800;margin-bottom:.3rem;}
+.plan .price{font-family:'Space Mono',monospace;font-size:.8rem;color:var(--grey);margin-bottom:1.25rem;}
+.plan .price b{color:var(--white);font-size:1rem;}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.plan li{display:flex;align-items:flex-start;gap:.55rem;font-size:.86rem;color:rgba(255,255,255,.75);line-height:1.45;}
+.ck{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;flex-shrink:0;font-weight:700;margin-top:.05rem;}
+.ck-g{background:rgba(76,217,135,.12);color:var(--green);}
+.ck-y{background:rgba(255,215,51,.12);color:var(--yellow);}
+.soon{position:absolute;top:1.25rem;right:1.25rem;background:var(--yellow);color:var(--dark);font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .7rem;border-radius:999px;}
+.note{margin-top:1.25rem;font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.6;}
+
+/* TITLES */
+.tlist{margin-top:2.5rem;background:var(--surface-alt);border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.05);}
+.trow{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.6rem;border-bottom:1px solid rgba(255,255,255,.05);}
+.trow:last-child{border:none;}
+.tscore{font-family:'Space Mono',monospace;font-size:.9rem;font-weight:700;color:var(--yellow);min-width:65px;}
+.tname{font-size:.92rem;font-weight:700;flex:1;}
+.tstars{color:var(--yellow);font-size:.75rem;letter-spacing:.1em;}
+
+/* CTA */
+.cta-band{background:var(--red);padding:5rem 1.25rem;text-align:center;position:relative;overflow:hidden;}
+.cta-band h2{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;margin-bottom:.65rem;letter-spacing:-.02em;}
+.cta-band p{font-size:.95rem;opacity:.85;margin-bottom:1.75rem;}
+.btn-white{background:#fff;color:var(--red);padding:.85rem 2.25rem;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;transition:transform .2s;}
+.btn-white:hover{transform:translateY(-2px);}
+
+/* SUPPORT */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2.5rem;}
+.sc{background:var(--surface-alt);border:1px solid rgba(255,255,255,.05);border-radius:18px;padding:1.5rem;}
+.sc h3{font-size:.95rem;font-weight:700;margin-bottom:.45rem;}
+.sc p{font-size:.84rem;color:var(--grey);line-height:1.6;}
+.sc a{color:var(--blue);text-decoration:none;}
+.sc a:hover{text-decoration:underline;}
+.faq{margin-top:2.5rem;display:flex;flex-direction:column;gap:.75rem;}
+.faq details{background:var(--surface-alt);border:1px solid rgba(255,255,255,.05);border-radius:14px;padding:1.1rem 1.4rem;}
+.faq summary{cursor:pointer;font-weight:700;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;gap:1rem;}
+.faq summary::after{content:"+";color:var(--red);font-weight:800;}
+.faq details[open] summary::after{content:"–";}
+.faq details p{margin-top:.7rem;font-size:.85rem;color:var(--grey);line-height:1.65;}
+
+/* LEGAL */
+.legal{padding:8rem 1.25rem 4rem;max-width:760px;margin:0 auto;}
+.legal .updated{font-family:'Space Mono',monospace;font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:2rem;}
+.legal .summary{background:var(--surface-alt);border-left:4px solid var(--yellow);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:2rem;font-size:.86rem;color:rgba(255,255,255,.7);line-height:1.7;}
+.legal h2{font-size:1rem;font-weight:700;margin:2rem 0 .5rem;color:var(--white);}
+.legal p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:.6rem;}
+.legal a{color:var(--blue);}
+
+/* FOOTER */
+footer{padding:2.5rem 1.25rem;max-width:1080px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1.25rem;border-top:1px solid rgba(255,255,255,.05);text-align:center;}
+.fb{font-size:1.3rem;font-weight:800;letter-spacing:.06em;}
+.fb span{color:var(--red);}
+.fl{display:flex;flex-wrap:wrap;gap:1.25rem;justify-content:center;list-style:none;}
+.fl a{color:var(--grey);text-decoration:none;font-size:.8rem;transition:color .2s;}
+.fl a:hover{color:var(--white);}
+.sr{display:flex;gap:.65rem;}
+.sl{width:38px;height:38px;border-radius:50%;background:var(--surface-alt);border:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:var(--grey);text-decoration:none;font-size:.9rem;transition:background .2s,color .2s;}
+.sl:hover{background:var(--red);color:#fff;}
+.copy{font-size:.72rem;color:rgba(255,255,255,.28);}
 </style>
 </head>
 <body>
-<main>
-<header><img src="/icon.png" alt=""><a href="/">PLEAD IT</a></header>
+<nav>
+  <a href="/" class="nav-logo"><img src="/icon.png" alt="">PLEAD<span style="color:var(--red)">IT</span></a>
+  <ul class="nav-links">
+    <li><a href="/#concept">Le jeu</a></li>
+    <li><a href="/#howtoplay">Comment jouer</a></li>
+    <li><a href="/#niveaux">Niveaux</a></li>
+    <li><a href="/#formules">Formules</a></li>
+    <li><a href="/support/">Support</a></li>
+    <li class="keep"><a href="https://apps.apple.com/app/id6761395019" class="nav-cta">App Store ↓</a></li>
+  </ul>
+</nav>
 
 <section class="hero">
-  <img src="/icon.png" alt="Icône Plead It">
-  <h1>Plead It</h1>
-  <p class="tagline">Défends l'indéfendable.</p>
-  <p>Le jeu de soirée qui divise et rassemble. Une opinion controversée s'affiche,
-  la roulette désigne un joueur, et il a 60 secondes pour la défendre devant tout le groupe,
-  même s'il pense le contraire. Le groupe note, le meilleur avocat gagne.</p>
-  <p><a class="btn" href="https://apps.apple.com/app/id6761395019">Télécharger sur l'App Store</a></p>
+  <div class="hero-badge">🎮 Jeu de soirée &nbsp;·&nbsp; Un seul téléphone &nbsp;·&nbsp; <b>Gratuit</b></div>
+  <svg class="roulette-icon" viewBox="0 0 90 90" fill="none" aria-hidden="true">
+    <path d="M45 5 A40 40 0 0 1 85 45" stroke="#FFD733" stroke-width="10"/>
+    <path d="M85 45 A40 40 0 0 1 65.6 77.2" stroke="#E94560" stroke-width="10"/>
+    <path d="M65.6 77.2 A40 40 0 0 1 24.4 77.2" stroke="#E94560" stroke-width="10"/>
+    <path d="M24.4 77.2 A40 40 0 0 1 5 45" stroke="#E94560" stroke-width="10"/>
+    <path d="M5 45 A40 40 0 0 1 45 5" stroke="#E94560" stroke-width="10"/>
+    <line x1="45" y1="5" x2="45" y2="45" stroke="#1A1A2E" stroke-width="2.5"/>
+    <line x1="85" y1="45" x2="45" y2="45" stroke="#1A1A2E" stroke-width="2.5"/>
+    <line x1="65.6" y1="77.2" x2="45" y2="45" stroke="#1A1A2E" stroke-width="2.5"/>
+    <line x1="24.4" y1="77.2" x2="45" y2="45" stroke="#1A1A2E" stroke-width="2.5"/>
+    <line x1="5" y1="45" x2="45" y2="45" stroke="#1A1A2E" stroke-width="2.5"/>
+    <circle cx="45" cy="45" r="14" fill="#1A1A2E" stroke="#16213E" stroke-width="2"/>
+    <path d="M40 38 L53 45 L40 52 Z" fill="#fff"/>
+  </svg>
+  <h1>PLEAD <span>IT</span></h1>
+  <div class="hero-bar"></div>
+  <p class="hero-tagline">Défends l'indéfendable.</p>
+  <p class="hero-desc">Une opinion controversée s'affiche. La roulette te désigne. Tu as moins d'une minute pour convaincre le groupe, même si tu penses totalement le contraire.</p>
+  <div class="hero-btns">
+    <a href="https://apps.apple.com/app/id6761395019" class="btn-red"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.14-2.2 1.28-2.18 3.81.03 3.02 2.65 4.03 2.68 4.04l-.05.17zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg> Télécharger sur l'App Store</a>
+    <a href="#howtoplay" class="btn-outline">Comment jouer →</a>
+  </div>
+  <div class="hero-meta"><span>200+ opinions</span><span>3 niveaux</span><span>2 à 15 joueurs</span><span>7 langues</span></div>
 </section>
-<div class="card">
-  <h2>Comment jouer</h2>
-  <ol>
-    <li>Choisissez vos joueurs (jusqu'à 15).</li>
-    <li>Une opinion s'affiche : Soft, Medium ou Hard.</li>
-    <li>La roulette désigne le défenseur.</li>
-    <li>Il plaide pendant 60 secondes.</li>
-    <li>Le groupe note de 1 à 5.</li>
-  </ol>
-</div>
-<p class="muted">The party game where you defend the indefensible. Available in French, English,
-Spanish, Portuguese, German, Italian and Arabic.</p>
 
-<nav>
-  <a href="/">Accueil</a>
-  <a href="/privacy/">Confidentialité</a>
-  <a href="/terms/">Conditions d'utilisation</a>
-  <a href="/support/">Support</a>
-</nav>
-<p class="muted">© 2026 Plead It</p>
-</main>
+<div class="cards-band">
+  <p class="cards-eyebrow">Extraits d'opinions à défendre</p>
+  <div style="overflow:hidden">
+    <div class="track"><div class="ocard c-green tl"><span class="ocard-label">À défendre</span><p class="ocard-text">L&#x27;ananas sur la pizza est le meilleur topping.</p><span class="ocard-cat">Soft</span></div><div class="ocard c-red "><span class="ocard-label">À défendre</span><p class="ocard-text">Les influenceurs contribuent plus à la société que les professeurs.</p><span class="ocard-cat">Medium</span></div><div class="ocard c-yellow tr"><span class="ocard-label">À défendre</span><p class="ocard-text">Les céréales se versent mieux APRÈS le lait.</p><span class="ocard-cat">Soft</span></div><div class="ocard c-purple tl"><span class="ocard-label">À défendre</span><p class="ocard-text">Les drogues douces devraient être légalisées partout.</p><span class="ocard-cat">Hard</span></div><div class="ocard c-blue "><span class="ocard-label">À défendre</span><p class="ocard-text">Le ghosting est une forme acceptable de rupture.</p><span class="ocard-cat">Medium</span></div><div class="ocard c-pink tr"><span class="ocard-label">À défendre</span><p class="ocard-text">Les spoilers ne gâchent pas un film.</p><span class="ocard-cat">Soft</span></div><div class="ocard c-orange tl2"><span class="ocard-label">À défendre</span><p class="ocard-text">L&#x27;astrologie est une science légitime.</p><span class="ocard-cat">Medium</span></div><div class="ocard c-red tr2"><span class="ocard-label">À défendre</span><p class="ocard-text">La peine de mort est justifiée dans les cas extrêmes.</p><span class="ocard-cat">Hard</span></div><div class="ocard c-green tl"><span class="ocard-label">À défendre</span><p class="ocard-text">L&#x27;ananas sur la pizza est le meilleur topping.</p><span class="ocard-cat">Soft</span></div><div class="ocard c-red "><span class="ocard-label">À défendre</span><p class="ocard-text">Les influenceurs contribuent plus à la société que les professeurs.</p><span class="ocard-cat">Medium</span></div><div class="ocard c-yellow tr"><span class="ocard-label">À défendre</span><p class="ocard-text">Les céréales se versent mieux APRÈS le lait.</p><span class="ocard-cat">Soft</span></div><div class="ocard c-purple tl"><span class="ocard-label">À défendre</span><p class="ocard-text">Les drogues douces devraient être légalisées partout.</p><span class="ocard-cat">Hard</span></div><div class="ocard c-blue "><span class="ocard-label">À défendre</span><p class="ocard-text">Le ghosting est une forme acceptable de rupture.</p><span class="ocard-cat">Medium</span></div><div class="ocard c-pink tr"><span class="ocard-label">À défendre</span><p class="ocard-text">Les spoilers ne gâchent pas un film.</p><span class="ocard-cat">Soft</span></div><div class="ocard c-orange tl2"><span class="ocard-label">À défendre</span><p class="ocard-text">L&#x27;astrologie est une science légitime.</p><span class="ocard-cat">Medium</span></div><div class="ocard c-red tr2"><span class="ocard-label">À défendre</span><p class="ocard-text">La peine de mort est justifiée dans les cas extrêmes.</p><span class="ocard-cat">Hard</span></div></div>
+    <div class="track track-r"><div class="ocard c-purple tl"><span class="ocard-label">À défendre</span><p class="ocard-text">Fouiller le téléphone de son partenaire est de la prudence, pas de la trahison.</p><span class="ocard-cat">Medium</span></div><div class="ocard c-yellow "><span class="ocard-label">À défendre</span><p class="ocard-text">Les Crocs sont les chaussures les plus stylées jamais créées.</p><span class="ocard-cat">Soft</span></div><div class="ocard c-green tr"><span class="ocard-label">À défendre</span><p class="ocard-text">Être ami avec son ex est impossible.</p><span class="ocard-cat">Medium</span></div><div class="ocard c-pink tl"><span class="ocard-label">À défendre</span><p class="ocard-text">L&#x27;euthanasie devrait être un droit pour tout le monde.</p><span class="ocard-cat">Hard</span></div><div class="ocard c-orange "><span class="ocard-label">À défendre</span><p class="ocard-text">Le lundi est le meilleur jour de la semaine.</p><span class="ocard-cat">Soft</span></div><div class="ocard c-blue tr"><span class="ocard-label">À défendre</span><p class="ocard-text">Les riches méritent chaque centime qu&#x27;ils gagnent.</p><span class="ocard-cat">Medium</span></div><div class="ocard c-red tl2"><span class="ocard-label">À défendre</span><p class="ocard-text">Dormir avec des chaussettes, c&#x27;est supérieur.</p><span class="ocard-cat">Soft</span></div><div class="ocard c-yellow tr2"><span class="ocard-label">À défendre</span><p class="ocard-text">Le capitalisme est le meilleur système économique jamais inventé.</p><span class="ocard-cat">Hard</span></div><div class="ocard c-purple tl"><span class="ocard-label">À défendre</span><p class="ocard-text">Fouiller le téléphone de son partenaire est de la prudence, pas de la trahison.</p><span class="ocard-cat">Medium</span></div><div class="ocard c-yellow "><span class="ocard-label">À défendre</span><p class="ocard-text">Les Crocs sont les chaussures les plus stylées jamais créées.</p><span class="ocard-cat">Soft</span></div><div class="ocard c-green tr"><span class="ocard-label">À défendre</span><p class="ocard-text">Être ami avec son ex est impossible.</p><span class="ocard-cat">Medium</span></div><div class="ocard c-pink tl"><span class="ocard-label">À défendre</span><p class="ocard-text">L&#x27;euthanasie devrait être un droit pour tout le monde.</p><span class="ocard-cat">Hard</span></div><div class="ocard c-orange "><span class="ocard-label">À défendre</span><p class="ocard-text">Le lundi est le meilleur jour de la semaine.</p><span class="ocard-cat">Soft</span></div><div class="ocard c-blue tr"><span class="ocard-label">À défendre</span><p class="ocard-text">Les riches méritent chaque centime qu&#x27;ils gagnent.</p><span class="ocard-cat">Medium</span></div><div class="ocard c-red tl2"><span class="ocard-label">À défendre</span><p class="ocard-text">Dormir avec des chaussettes, c&#x27;est supérieur.</p><span class="ocard-cat">Soft</span></div><div class="ocard c-yellow tr2"><span class="ocard-label">À défendre</span><p class="ocard-text">Le capitalisme est le meilleur système économique jamais inventé.</p><span class="ocard-cat">Hard</span></div></div>
+  </div>
+</div>
+
+<section class="sec" id="concept">
+  <div class="tag">Le concept</div>
+  <h2 class="h2">Le jeu qui crée des débats.</h2>
+  <p class="sub">Conçu pour être joué en groupe sur un seul téléphone. Parfait pour les soirées, les apéros, les voyages et les team-buildings.</p>
+  <div class="cgrid">
+    <div class="cc"><div class="cc-bar" style="background:var(--red)"></div><div class="cc-n">01</div><h3>Une opinion choc</h3><p>Chaque manche, une opinion controversée s'affiche. Légère, engagée ou carrément osée.</p></div>
+    <div class="cc"><div class="cc-bar" style="background:var(--purple)"></div><div class="cc-n">02</div><h3>La roulette désigne</h3><p>La roulette tourne et choisit l'avocat du diable. Personne n'y échappe : chacun passe à son tour.</p></div>
+    <div class="cc"><div class="cc-bar" style="background:var(--yellow)"></div><div class="cc-n">03</div><h3>Le chrono tourne</h3><p>30, 45 ou 60 secondes pour plaider, même si tu es totalement contre.</p></div>
+    <div class="cc"><div class="cc-bar" style="background:var(--orange)"></div><div class="cc-n">04</div><h3>Objection !</h3><p>Le groupe peut couper l'avocat avec une question piège. Ambiance tribunal garantie.</p></div>
+    <div class="cc"><div class="cc-bar" style="background:var(--green)"></div><div class="cc-n">05</div><h3>Le groupe note de 1 à 5</h3><p>On délibère ensemble et on donne une note collective à la plaidoirie.</p></div>
+    <div class="cc"><div class="cc-bar" style="background:var(--blue)"></div><div class="cc-n">06</div><h3>Classement et titres</h3><p>Chaque joueur repart avec son titre honorifique. Qui sera Maître du Barreau ?</p></div>
+  </div>
+  <div class="screens">
+    <div><div class="phone"><img src="/img/opinion.png" alt="Écran d'une opinion à défendre" loading="lazy"></div><p class="phone-cap">L'opinion s'affiche</p></div>
+    <div><div class="phone"><img src="/img/reveal.png" alt="Écran de l'avocat désigné" loading="lazy"></div><p class="phone-cap">La roulette désigne l'avocat</p></div>
+    <div><div class="phone"><img src="/img/rating.png" alt="Écran de notation" loading="lazy"></div><p class="phone-cap">Le groupe note</p></div>
+  </div>
+</section>
+
+<div class="sec-bg">
+<section class="sec" id="howtoplay">
+  <div class="tag">Comment jouer</div>
+  <h2 class="h2">En 7 étapes simples.</h2>
+  <p class="sub">Une partie se lance en moins d'une minute. Pas de compte, pas d'inscription.</p>
+  <div class="steps">
+    <div class="step"><div class="sn">01</div><div><span class="stag" style="background:rgba(233,69,96,.12);color:var(--red)">Mise en place</span><h3>Créer les profils joueurs</h3><p>Chaque joueur a son profil : prénom, couleur et photo. Ils sont gardés sur le téléphone pour les prochaines parties.</p></div></div>
+    <div class="step"><div class="sn">02</div><div><span class="stag" style="background:rgba(145,104,237,.12);color:var(--purple)">Configuration</span><h3>Choisir les joueurs et les règles</h3><p>De 2 à 15 joueurs. Choisissez le niveau (Soft, Medium, Hard), la durée du chrono et le nombre d'objections. Ajoutez vos propres questions maison.</p></div></div>
+    <div class="step"><div class="sn">03</div><div><span class="stag" style="background:rgba(255,215,51,.12);color:var(--yellow)">Jeu</span><h3>L'opinion s'affiche</h3><p>Une opinion controversée apparaît en grand. Tout le monde la lit avant la désignation.</p></div></div>
+    <div class="step"><div class="sn">04</div><div><span class="stag" style="background:rgba(145,104,237,.12);color:var(--purple)">Désignation</span><h3>La roulette tourne</h3><p>Elle est séquentielle : chaque joueur plaide une fois avant que le cycle recommence.</p></div></div>
+    <div class="step"><div class="sn">05</div><div><span class="stag" style="background:rgba(233,69,96,.12);color:var(--red)">Plaidoirie</span><h3>Le chrono démarre</h3><p>L'avocat défend sa position. Après 20 secondes, le groupe peut lancer une objection.</p></div></div>
+    <div class="step"><div class="sn">06</div><div><span class="stag" style="background:rgba(76,217,135,.12);color:var(--green)">Note</span><h3>Le groupe note de 1 à 5</h3><p>Délibération collective, puis un seul joueur valide la note.</p></div></div>
+    <div class="step"><div class="sn">07</div><div><span class="stag" style="background:rgba(255,215,51,.12);color:var(--yellow)">Fin</span><h3>Classement final et titres</h3><p>Quand tout le monde a plaidé, le podium et les titres honorifiques s'affichent. Partagez le résultat en un clic.</p></div></div>
+  </div>
+  <div class="obj-box">
+    <h3>⚡ L'Objection</h3>
+    <p>Disponible après 20 secondes de plaidoirie. Le chrono se met en pause, un joueur pose une question piège, puis le chrono reprend tout seul. De 0 à 2 objections par manche, au choix.</p>
+  </div>
+</section>
+</div>
+
+<section class="sec" id="niveaux">
+  <div class="tag">Contenu</div>
+  <h2 class="h2">3 niveaux d'intensité.</h2>
+  <p class="sub">Choisissez selon l'ambiance du groupe. Et pour les soirées très spéciales, ajoutez vos propres questions.</p>
+  <div class="lvl-row">
+    <div class="lvl lv-s">SOFT<small>Opinions légères · Tout public</small><span class="cnt">50 opinions</span></div>
+    <div class="lvl lv-m">MEDIUM<small>Opinions engagées · Pour débattre</small><span class="cnt">50 opinions</span></div>
+    <div class="lvl lv-h">HARD<small>Opinions osées · Groupes avertis</small><span class="cnt">100 opinions</span></div>
+  </div>
+  <p class="note" style="text-align:center">+ 150 opinions premium à débloquer.</p>
+</section>
+
+<div class="sec-bg">
+<section class="sec" id="formules">
+  <div class="tag">Formules</div>
+  <h2 class="h2">100 % gratuit pour jouer.</h2>
+  <p class="sub">Plead It est gratuit et financé par la publicité. Jamais de pub pendant une manche.</p>
+  <div class="pgrid">
+    <div class="plan">
+      <div class="plan-name">Gratuit</div>
+      <h3>Plead It</h3>
+      <p class="price"><b>0 €</b> · avec publicité</p>
+      <ul>
+        <li><span class="ck ck-g">✓</span>Jusqu'à 15 joueurs</li>
+        <li><span class="ck ck-g">✓</span>200 opinions sur 3 niveaux</li>
+        <li><span class="ck ck-g">✓</span>7 questions maison par partie</li>
+        <li><span class="ck ck-g">✓</span>Profils avec photo, scores et titres</li>
+        <li><span class="ck ck-g">✓</span>Roulette, chrono et objections</li>
+        <li><span class="ck ck-g">✓</span>🎬 Une courte vidéo débloque les 150 opinions premium pendant 24 h</li>
+      </ul>
+    </div>
+    <div class="plan featured">
+      <span class="soon">Bientôt</span>
+      <div class="plan-name">Abonnement</div>
+      <h3>Plead It Premium ★</h3>
+      <p class="price"><b>1,99 €</b> / mois · ou <b>9,99 €</b> / an</p>
+      <ul>
+        <li><span class="ck ck-y">✓</span>Les 150 opinions premium, en permanence</li>
+        <li><span class="ck ck-y">✓</span>Aucune publicité</li>
+        <li><span class="ck ck-y">✓</span>Jusqu'à 20 questions maison par partie</li>
+        <li><span class="ck ck-y">✓</span>Tout le contenu de la version gratuite</li>
+      </ul>
+      <p class="note">Abonnement sans engagement, résiliable à tout moment depuis les réglages de votre compte Apple.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<section class="sec" id="titres">
+  <div class="tag">Titres honorifiques</div>
+  <h2 class="h2">Qui sera Maître du Barreau ?</h2>
+  <p class="sub">En fin de partie, chaque joueur reçoit un titre selon sa moyenne.</p>
+  <div class="tlist">
+    <div class="trow"><span class="tscore">≥ 4.5</span><span class="tname">Maître du Barreau</span><span class="tstars">★★★★★</span></div>
+    <div class="trow"><span class="tscore">≥ 3.5</span><span class="tname">Avocat redoutable</span><span class="tstars">★★★★☆</span></div>
+    <div class="trow"><span class="tscore">≥ 2.5</span><span class="tname">Avocat solide</span><span class="tstars">★★★☆☆</span></div>
+    <div class="trow"><span class="tscore">≥ 1.5</span><span class="tname">Apprenti avocat</span><span class="tstars">★★☆☆☆</span></div>
+    <div class="trow"><span class="tscore">&lt; 1.5</span><span class="tname">Stagiaire</span><span class="tstars">★☆☆☆☆</span></div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Prêt à défendre l'indéfendable ?</h2>
+  <p>Télécharge Plead It gratuitement sur l'App Store.</p>
+  <a href="https://apps.apple.com/app/id6761395019" class="btn-white"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.14-2.2 1.28-2.18 3.81.03 3.02 2.65 4.03 2.68 4.04l-.05.17zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg> Télécharger sur l'App Store</a>
+</div>
+
+<footer>
+  <div class="fb">PLEAD<span>IT</span></div>
+  <div class="sr">
+    <a href="https://www.instagram.com/plead.it/" target="_blank" rel="noopener" class="sl" title="Instagram" aria-label="Instagram">📸</a>
+    <a href="https://www.tiktok.com/@plead.it" target="_blank" rel="noopener" class="sl" title="TikTok" aria-label="TikTok">🎵</a>
+    <a href="mailto:plead.it.app@gmail.com" class="sl" title="Email" aria-label="Email">✉️</a>
+  </div>
+  <ul class="fl">
+    <li><a href="/#concept">Le jeu</a></li>
+    <li><a href="/#howtoplay">Comment jouer</a></li>
+    <li><a href="/#formules">Formules</a></li>
+    <li><a href="/support/">Support</a></li>
+    <li><a href="/privacy/">Confidentialité</a></li>
+    <li><a href="/terms/">Conditions d'utilisation</a></li>
+  </ul>
+  <p class="copy">© 2026 Plead It · Tous droits réservés · <em>Defend the indefensible.</em></p>
+</footer>
 </body>
 </html>
