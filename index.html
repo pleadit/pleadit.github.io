@@ -43,8 +43,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .hero > *{position:relative;}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--grey);font-size:.72rem;font-weight:600;padding:.35rem .95rem;border-radius:999px;margin-bottom:2rem;letter-spacing:.1em;text-transform:uppercase;}
 .hero-badge b{color:var(--green);}
-.roulette-icon{width:90px;height:90px;margin:0 auto 1.5rem;display:block;animation:spin 14s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg);}}
 .hero h1{font-size:clamp(4rem,14vw,10rem);font-weight:800;line-height:.88;letter-spacing:-.03em;}
 .hero h1 span{color:var(--red);}
 .hero-bar{width:56px;height:5px;background:var(--red);border-radius:3px;margin:1.25rem auto;}
@@ -78,7 +76,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .ocard-cat{display:inline-block;background:rgba(0,0,0,.12);font-size:.65rem;font-weight:700;padding:.2rem .65rem;border-radius:999px;align-self:flex-start;text-transform:uppercase;letter-spacing:.08em;}
 .c-red .ocard-cat,.c-purple .ocard-cat,.c-pink .ocard-cat{background:rgba(255,255,255,.18);}
 .tl{transform:rotate(-3deg);}.tr{transform:rotate(3deg);}.tl2{transform:rotate(-6deg);}.tr2{transform:rotate(6deg);}
-@media(prefers-reduced-motion:reduce){.track,.roulette-icon{animation:none;}}
+@media(prefers-reduced-motion:reduce){.track{animation:none;}}
 
 /* SECTIONS */
 .sec{padding:5.5rem 1.25rem;max-width:1080px;margin:0 auto;}
@@ -211,20 +209,6 @@ footer{padding:2.5rem 1.25rem;max-width:1080px;margin:0 auto;display:flex;flex-d
 
 <section class="hero">
   <div class="hero-badge">🎮 Jeu de soirée &nbsp;·&nbsp; Un seul téléphone &nbsp;·&nbsp; <b>Gratuit</b></div>
-  <svg class="roulette-icon" viewBox="0 0 90 90" fill="none" aria-hidden="true">
-    <path d="M45 5 A40 40 0 0 1 85 45" stroke="#FFD733" stroke-width="10"/>
-    <path d="M85 45 A40 40 0 0 1 65.6 77.2" stroke="#E94560" stroke-width="10"/>
-    <path d="M65.6 77.2 A40 40 0 0 1 24.4 77.2" stroke="#E94560" stroke-width="10"/>
-    <path d="M24.4 77.2 A40 40 0 0 1 5 45" stroke="#E94560" stroke-width="10"/>
-    <path d="M5 45 A40 40 0 0 1 45 5" stroke="#E94560" stroke-width="10"/>
-    <line x1="45" y1="5" x2="45" y2="45" stroke="#1A1A2E" stroke-width="2.5"/>
-    <line x1="85" y1="45" x2="45" y2="45" stroke="#1A1A2E" stroke-width="2.5"/>
-    <line x1="65.6" y1="77.2" x2="45" y2="45" stroke="#1A1A2E" stroke-width="2.5"/>
-    <line x1="24.4" y1="77.2" x2="45" y2="45" stroke="#1A1A2E" stroke-width="2.5"/>
-    <line x1="5" y1="45" x2="45" y2="45" stroke="#1A1A2E" stroke-width="2.5"/>
-    <circle cx="45" cy="45" r="14" fill="#1A1A2E" stroke="#16213E" stroke-width="2"/>
-    <path d="M40 38 L53 45 L40 52 Z" fill="#fff"/>
-  </svg>
   <h1>PLEAD <span>IT</span></h1>
   <div class="hero-bar"></div>
   <p class="hero-tagline">Défends l'indéfendable.</p>
